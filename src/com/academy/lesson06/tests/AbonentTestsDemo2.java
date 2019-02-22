@@ -25,21 +25,21 @@ public class AbonentTestsDemo2 {
     }
 
     // Извлекаем номер телефона как строку
-    private static String parsePhoneNumber(String abonentRawString) {
+    public static String parsePhoneNumber(String abonentRawString) {
         String[] parts = abonentRawString.trim().split(" ");
         String phoneNumber = parts[4];
         return phoneNumber;
     }
 
     // Извлекаем пол как символ
-    private static char parseGender(String abonentRawString) {
+    public static char parseGender(String abonentRawString) {
         String[] resultString = abonentRawString.trim().split(" ");
         char gender=resultString[3].charAt(0);
         return gender;
     }
 
     // Извлекаем возраст как число
-    private static int parseAge(String abonentRawString) {
+    public static int parseAge(String abonentRawString) {
         String noSpaces = abonentRawString.trim();
         String[] parts = noSpaces.split(" ");
         String age = parts[2];
@@ -60,7 +60,7 @@ public class AbonentTestsDemo2 {
 
     // Извлекаем имя как строку
     // (аналогично фамилии - для одинаковой логики нужно создать общий метод)
-    private static String parseFirstName(String abonentRawString) {
+    public static String parseFirstName(String abonentRawString) {
         String noSpaces = abonentRawString.trim(); //вернули точно такую же строку, но без начальных и конечных пробелов!!!
         String [] parts = noSpaces.split(" "); // разбили нашу строку по пробелам на отдельные части
         String rawFirstName = parts[0]; // 'heLen'
