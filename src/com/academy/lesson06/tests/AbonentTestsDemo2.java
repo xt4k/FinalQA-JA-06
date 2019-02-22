@@ -3,7 +3,7 @@ package com.academy.lesson06.tests;
 import com.academy.lesson06.model.Abonent;
 
 public class AbonentTestsDemo2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseAbonentException {
         String abonentRawString = "  heLen iVanova 35 f 0501234567";
         // Parse abonent
         // Парсим абонента и результат записываем в поля класса
@@ -48,7 +48,7 @@ public class AbonentTestsDemo2 {
 
 
     // Извлекаем фамилию  как строку
-    private static String parseLastName(String abonentRawString) {
+    public static String parseLastName(String abonentRawString) {
         String noSpaces = abonentRawString.trim(); //вернули точно такую же строку, но без начальных и конечных пробелов!!!
         String [] parts = noSpaces.split(" "); // разбили нашу строку по пробелам на отдельные части
         String rawLastName = parts[1]; // iVanova
@@ -60,7 +60,14 @@ public class AbonentTestsDemo2 {
 
     // Извлекаем имя как строку
     // (аналогично фамилии - для одинаковой логики нужно создать общий метод)
-    public static String parseFirstName(String abonentRawString) {
+    public static String parseFirstName(String abonentRawString) throws ParseAbonentException {
+        if (abonentRawString == null || abonentRawString.isEmpty()) {
+            ParseAbonentException exc = new ParseAbonentException();
+            exc.setDetail("adasd");
+            throw  exc;
+        }
+
+        // Если строка пустая => бросаем ParseAbonentException
         String noSpaces = abonentRawString.trim(); //вернули точно такую же строку, но без начальных и конечных пробелов!!!
         String [] parts = noSpaces.split(" "); // разбили нашу строку по пробелам на отдельные части
         String rawFirstName = parts[0]; // 'heLen'
