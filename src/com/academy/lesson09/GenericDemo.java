@@ -1,5 +1,10 @@
 package com.academy.lesson09;
 
+import com.academy.lesson06.model.Abonent;
+import javafx.util.Pair;
+
+import java.util.Arrays;
+
 public class GenericDemo {
     public static void main(String[] args) {
         Container<String> container = new Container<>();
@@ -18,5 +23,25 @@ public class GenericDemo {
         containerObj.setValue(1);
         int m = (int)containerObj.getValue();
         System.out.println(m);
+
+        PairContainer<Integer, String> pair = new PairContainer<>();
+        pair.setFirstValue(2);
+        pair.setSecondValue("2");
+
+        System.out.println(pair.getFirstValue() + "=>" + pair.getSecondValue());
+
+        Container<Container<String>> containerNested = new Container<>();
+        containerNested.setValue(container);
+
+        Container<Container<PairContainer<Integer, Abonent>>> hardCodeContainer = null;
+
+        System.out.println("========");
+        PairContainer<Integer[], String[]> pairContainer = new PairContainer<>();
+        String[] arrStr = {"1", "2", "3"};
+        System.out.println(Arrays.toString(arrStr));
+        pairContainer.setFirstValue(new Integer[]{1, 2, 3});
+        pairContainer.setSecondValue(arrStr);
+        System.out.println(pair);
+        System.out.println(pairContainer);
     }
 }
