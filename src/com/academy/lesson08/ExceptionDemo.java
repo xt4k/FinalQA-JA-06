@@ -1,9 +1,8 @@
 package com.academy.lesson08;
 
+import com.academy.lesson06.tests.AbonentParser;
 import com.academy.lesson06.tests.ParseAbonentException;
 
-import static com.academy.lesson06.tests.AbonentTestsDemo2.parseFirstName;
-import static com.academy.lesson06.tests.AbonentTestsDemo2.parseLastName;
 
 public class ExceptionDemo {
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class ExceptionDemo {
         // 2 Обработать ситуацию любая другая ошибка
         String name = null;
         try {
-            name = parseFirstName(abonentRawString);
+            name = AbonentParser.parseFirstName(abonentRawString);
         } catch (ParseAbonentException e) {
             System.out.println("Empty row. Details: " + e);
             System.exit(1);
