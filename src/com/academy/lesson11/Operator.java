@@ -19,4 +19,12 @@ public class Operator {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Operator{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

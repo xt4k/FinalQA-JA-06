@@ -1,9 +1,19 @@
 package com.academy.lesson11;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.*;
+import java.util.*;
 
 public class SubscriberDemo {
+    private static String subscriberDataPath = "subscriber.txt";
+    private static String subscriberDataPath2 = "subscriber-2.txt";
+    private static String subscriberMapDataPath = "subscriber-map.txt";
+    private static String subscriberExcelDataPath = "subscriber.xlsx";
+
     public static void main(String[] args) {
         // Operators
         Operator operatorLife = new Operator();
@@ -11,12 +21,12 @@ public class SubscriberDemo {
         operatorLife.setName("Life");
 
         Operator operatorKievstar = new Operator();
-        operatorLife.setId(2L);
-        operatorLife.setName("Kievstar");
+        operatorKievstar.setId(2L);
+        operatorKievstar.setName("Kievstar");
 
         Operator operatorVodafone = new Operator();
-        operatorLife.setId(3L);
-        operatorLife.setName("Vodafone");
+        operatorVodafone.setId(3L);
+        operatorVodafone.setName("Vodafone");
 
         // Subscribers
         Subscriber subscriber1 = new Subscriber();
@@ -29,16 +39,104 @@ public class SubscriberDemo {
         subscriber1.setOperator(operatorLife);
 
         Subscriber subscriber2 = new Subscriber();
-        subscriber1.setId(2L);
-        subscriber1.setFirstName("Катя");
-        subscriber1.setLastName("Петрова");
-        subscriber1.setGender(Gender.FEMALE);
-        subscriber1.setAge(34);
-        subscriber1.setPhoneNumber("380670058694");
-        subscriber1.setOperator(operatorKievstar);
+        subscriber2.setId(2L);
+        subscriber2.setFirstName("Катя");
+        subscriber2.setLastName("Петрова");
+        subscriber2.setGender(Gender.FEMALE);
+        subscriber2.setAge(34);
+        subscriber2.setPhoneNumber("380670058694");
+        subscriber2.setOperator(operatorKievstar);
 
         List<Subscriber> subscribers = new ArrayList<>();
 
-        //
+        // => на консоль
+        subscribers.add(subscriber1);
+        subscribers.add(subscriber2);
+        System.out.println(subscribers);
+
+        // => MAP
+        System.out.println("=======MAP======");
+        Map<Long, Subscriber> subscriberMap = new HashMap<>();
+//        subscriberMap.put(1L, subscriber1);
+        subscriberMap.put(subscriber1.getId(), subscriber1);
+        subscriberMap.put(subscriber2.getId(), subscriber2);
+
+        System.out.println(subscriberMap.get(2L));
+        // 1 способ
+        System.out.println("1) не рабочий");
+        for (int i = 1; i < subscriberMap.size(); i++) {
+            System.out.println(subscriberMap.get(i)); // не работает
+        }
+
+        // 2 способ
+        System.out.println("2) явно  по ключам");
+        for (Long key: subscriberMap.keySet()) {
+            System.out.println(subscriberMap.get(key)); // норм
+        }
+
+        // 2-б способ
+        System.out.println("2-б) явно  по ключам");
+        Set<Long> keys = subscriberMap.keySet();
+        List<Long> keysList = new ArrayList<>(keys);
+        for (int i = 0; i < keysList.size(); i++) {
+            Long key = keysList.get(i);
+            System.out.println(subscriberMap.get(key)); // норм
+        }
+
+        // 3 способ
+        System.out.println("3) без ключей");
+        for (Subscriber subscriber: subscriberMap.values()) {
+            System.out.println(subscriber); // норм
+        }
+
+        // 4 способ
+        System.out.println("4) ключ => значение");
+        for (Map.Entry<Long, Subscriber> entry: subscriberMap.entrySet()) {
+            System.out.println(entry.getKey() + "=>" + entry.getValue()); // норм
+        }
+
+        // 5 способ !!!
+        System.out.println("5) только вывод");
+        System.out.println(subscriberMap);
+
+        // пишем в файлы
+        System.out.println("Пишем в файл");
+        try(PrintWriter pw = new PrintWriter(subscriberDataPath);
+            PrintWriter pwMap = new PrintWriter(subscriberMapDataPath)) {
+            pw.println(subscribers);
+            pwMap.println(subscriberMap);
+            pw.close(); // нужно вызвать обязательно или поместить в блок try
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // читаем из файла
+        System.out.println("Читаем из файла");
+        try(FileReader fileReader = new FileReader(subscriberDataPath2);
+            BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String row;
+            // перебираем все строки
+            while((row = bufferedReader.readLine()) != null)
+                if (row.isEmpty())
+                    System.out.println("---empty---");
+                else
+                    System.out.println(row);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Пишем в excel
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Subscribers");
+        XSSFRow row = sheet.createRow(0);
+        XSSFCell cell = row.createCell(0);
+        cell.setCellValue("Test");
+
+        try(FileOutputStream out = new FileOutputStream(new File(subscriberExcelDataPath))) {
+            workbook.write(out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

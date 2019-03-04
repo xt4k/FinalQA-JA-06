@@ -64,4 +64,17 @@ public class Subscriber {
     public void setOperator(Operator operator) {
         this.operator = operator;
     }
+
+    @Override
+    public String toString() {
+        return "Subscriber{" +
+                "id=" + id +
+                "|" + firstName + '\'' +
+                "|'" + lastName + '\'' +
+                "|" + gender +
+                "|" + age +
+                "|'" + phoneNumber + '\'' +
+                "|" + operator +
+                '}' +"\n";
+    }
 }
