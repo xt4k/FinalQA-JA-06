@@ -1,0 +1,15 @@
+[Subscriber{id=1|Иван'|'Васильев'|м|23|'380630025465'|Operator{id=1, name='Life'}}
+ , Subscriber{id=2|Катя'|'Петрова'|ж|34|'380670058694'|Operator{id=2, name='Kievstar'}}
+ ]
+
+ [Subscriber{id=1|Иван'|'Васильев'|м|23|'380630025465'|Operator{id=1, name='Life'}}
+ , Subscriber{id=2|Катя'|'Петрова'|ж|34|'380670058694'|Operator{id=2, name='Kievstar'}}
+ ]
+
+ w
+
+
+ 234
+
+
+ s
