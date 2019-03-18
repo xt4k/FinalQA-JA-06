@@ -19,9 +19,7 @@ public class AuthTests {
     private String commonProperties = "D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties";
     private WebDriver driver;
     private String baseUrl;
-    private String geckoDriver;
-    private String chromeDriver;
-    private boolean acceptNextAlert = true;
+
     private StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
