@@ -47,18 +47,31 @@ public class AuthTests {
     public void testUntitledTestCase() throws Exception {
         driver.get(baseUrl);
         driver.findElement(By.linkText("Sign in")).click();
-        driver.findElement(By.id("email")).click();
-        driver.findElement(By.id("email")).clear();
-        driver.findElement(By.id("email")).sendKeys("oleg.kh81@gmail.comqwerere");
-        driver.findElement(By.id("passwd")).click();
-        driver.findElement(By.id("passwd")).clear();
-        driver.findElement(By.id("passwd")).sendKeys("123qwertyasdd");
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Forgot your password?'])[1]/following::span[1]")).click();
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::div[1]")).click();
-        try {
-            assertEquals(driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::li[1]")).getText(), "Authentication failed.");
-        } catch (Error e) {
-            verificationErrors.append(e.toString());
+
+        String[] logins = {"", "qwertyLogin"};
+        String[] passwords = {"123", "qwertyPassword"};
+        String[] expectedMessages = {"An email address required.", "Invalid email address."};
+
+        for (int i = 0; i < logins.length; i++) {
+            // Заполняем форму логин/пароль
+            WebElement loginField = driver.findElement(By.id("email"));
+            loginField.click();
+            loginField.clear();
+            loginField.sendKeys(logins[i]);
+//            loginField.sendKeys("oleg.kh81@gmail.comqwerere");
+
+            //driver.findElement(By.id("email")).clear();
+            //driver.findElement(By.id("email")).sendKeys("oleg.kh81@gmail.comqwerere");
+            driver.findElement(By.id("passwd")).click();
+            driver.findElement(By.id("passwd")).clear();
+            driver.findElement(By.id("passwd")).sendKeys("123qwertyasdd");
+            driver.findElement(By.id("SubmitLogin")).click();
+//        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::div[1]")).click();
+            try {
+                assertEquals(driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::li[1]")).getText(), "Authentication failed.");
+            } catch (Error e) {
+                verificationErrors.append(e.toString());
+            }
         }
     }
 
