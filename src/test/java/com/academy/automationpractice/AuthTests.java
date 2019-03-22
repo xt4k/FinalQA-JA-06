@@ -20,6 +20,8 @@ public class AuthTests {
     private WebDriver driver;
     private String baseUrl;
 
+    private String errorMessageCssLocator = "#center_column > div.alert.alert-danger > ol > li";
+
     private StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
@@ -27,7 +29,7 @@ public class AuthTests {
         initDrivers();
 
         baseUrl = "http://automationpractice.com/index.php";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     private void initDrivers() {
@@ -66,9 +68,11 @@ public class AuthTests {
             driver.findElement(By.id("passwd")).clear();
             driver.findElement(By.id("passwd")).sendKeys("123qwertyasdd");
             driver.findElement(By.id("SubmitLogin")).click();
-//        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::div[1]")).click();
+
+            WebElement webElementWithErrorMessage = driver.findElement(By.cssSelector(errorMessageCssLocator));
+            String actualErrorMessage = webElementWithErrorMessage.getText();
             try {
-                assertEquals(driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::li[1]")).getText(), "Authentication failed.");
+                assertEquals(actualErrorMessage, "Authentication failed.");
             } catch (Error e) {
                 verificationErrors.append(e.toString());
             }
