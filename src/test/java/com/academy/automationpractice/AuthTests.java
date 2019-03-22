@@ -1,5 +1,6 @@
 package com.academy.automationpractice;
 
+import com.academy.automationpractice.model.AuthData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,6 +10,8 @@ import org.testng.annotations.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -50,9 +53,12 @@ public class AuthTests {
         driver.get(baseUrl);
         driver.findElement(By.linkText("Sign in")).click();
 
+        // TODO читать из excel
         String[] logins = {"", "qwertyLogin"};
         String[] passwords = {"123", "qwertyPassword"};
         String[] expectedMessages = {"An email address required.", "Invalid email address."};
+
+        List<AuthData> authDataList =  readTestData();
 
         for (int i = 0; i < logins.length; i++) {
             // Заполняем форму логин/пароль
@@ -67,7 +73,7 @@ public class AuthTests {
             driver.findElement(By.id("passwd")).click();
             driver.findElement(By.id("passwd")).clear();
             driver.findElement(By.id("passwd")).sendKeys("123qwertyasdd");
-            driver.findElement(By.id("SubmitLogin")).click();
+            driver.findElement(By.id("SubmitLogin")).submit();
 
             WebElement webElementWithErrorMessage = driver.findElement(By.cssSelector(errorMessageCssLocator));
             String actualErrorMessage = webElementWithErrorMessage.getText();
@@ -77,6 +83,13 @@ public class AuthTests {
                 verificationErrors.append(e.toString());
             }
         }
+    }
+
+    private List<AuthData> readTestData() {
+        List<AuthData> testDataList = new ArrayList<>();
+
+        // Прочитать из excel файла
+        return testDataList;
     }
 
     @AfterClass(alwaysRun = true)
