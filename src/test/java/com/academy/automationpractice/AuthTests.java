@@ -1,11 +1,16 @@
 package com.academy.automationpractice;
 
 import com.academy.automationpractice.model.AuthData;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -100,12 +105,20 @@ public class AuthTests {
         }
     }
 
-    // TODO FROM EXCEL
+    // TODO move path to property
     @DataProvider(name="authDataProvider")
-    public Object[][] authDataProvider() {
-        return new Object[][] {
-                {"", "123", "An email address required."},
-                {"qwertyLogin", "qwertyPassword", "Invalid email address."}
-        };
+    public Object[][] authDataProvider() throws IOException {
+        String pathData = "D:/programming/java/QA-JA-06/maven/test-data/automationpractice-auth-data.xlsx";
+        XSSFWorkbook workbook = new XSSFWorkbook( new FileInputStream( pathData ) );
+        XSSFSheet sheet = workbook.getSheet( "Sheet1" );
+        Object[][] testData = new Object[sheet.getLastRowNum()][3];
+        System.out.println(sheet.getLastRowNum());
+        for (int i = 1; i < sheet.getLastRowNum(); i++) {
+            XSSFRow parRow = sheet.getRow(i);
+            testData[i-1][0] = (parRow.getCell(0) == null) ? "" : parRow.getCell(0).getStringCellValue();
+            testData[i-1][1] = (parRow.getCell(1) == null) ? "" : parRow.getCell(1).getStringCellValue();
+            testData[i-1][2] = parRow.getCell(2).getStringCellValue();
+        }
+        return testData;
     }
 }
