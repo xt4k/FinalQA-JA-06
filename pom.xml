@@ -14,6 +14,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!--Кодировка-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <common.config>${basedir}/src/main/resources/common.properties</common.config>
+
+        <poi.ooxml.version>4.0.1</poi.ooxml.version>
     </properties>
 
     <dependencies>
@@ -21,7 +24,7 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>4.0.1</version>
+            <version>${poi.ooxml.version}</version>
         </dependency>
 
         <!--MySql connector-->
@@ -53,6 +56,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.21.0</version>
                 <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>common.cfg</name>
+                            <value>${common.config}</value>
+                            <!--<value>D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties</value>-->
+                            <!--<value>${basedir}/src/main/resources/common.properties</value>-->
+                        </property>
+                    </systemProperties>
                     <!--Путь к конфигурации testng.xml-->
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>

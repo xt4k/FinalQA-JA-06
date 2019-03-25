@@ -17,7 +17,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 public class AuthTests {
-    private String commonProperties = "D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties";
     private WebDriver driver;
     private String baseUrl;
 
@@ -35,6 +34,8 @@ public class AuthTests {
     }
 
     private void initDrivers(String browser) {
+        // Здесь читаю пусть к файлу конфигурации
+        String commonProperties = System.getProperty("common.cfg");
         Properties properties = new Properties();
         try {
             properties.load(new FileReader(commonProperties));
