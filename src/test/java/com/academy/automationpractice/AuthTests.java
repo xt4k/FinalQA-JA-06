@@ -59,40 +59,28 @@ public class AuthTests {
         }
     }
 
-    @Test
-    public void testUntitledTestCase() throws Exception {
+    @Test(dataProvider = "authDataProvider")
+    public void testUntitledTestCase(String login, String password, String expectedMessage) throws Exception {
         driver.get(baseUrl);
         driver.findElement(By.linkText("Sign in")).click();
 
-        // TODO читать из excel
-        String[] logins = {"", "qwertyLogin"};
-        String[] passwords = {"123", "qwertyPassword"};
-        String[] expectedMessages = {"An email address required.", "Invalid email address."};
+        // Заполняем форму логин/пароль
+        WebElement loginField = driver.findElement(By.id("email"));
+        loginField.click();
+        loginField.clear();
+        loginField.sendKeys(login);
 
-        List<AuthData> authDataList =  readTestData();
+        driver.findElement(By.id("passwd")).click();
+        driver.findElement(By.id("passwd")).clear();
+        driver.findElement(By.id("passwd")).sendKeys(password);
+        driver.findElement(By.id("SubmitLogin")).click();
 
-        for (int i = 0; i < logins.length; i++) {
-            // Заполняем форму логин/пароль
-            WebElement loginField = driver.findElement(By.id("email"));
-            loginField.click();
-            loginField.clear();
-            loginField.sendKeys(logins[i]);
-//            loginField.sendKeys("oleg.kh81@gmail.comqwerere");
-
-            //driver.findElement(By.id("email")).clear();
-            //driver.findElement(By.id("email")).sendKeys("oleg.kh81@gmail.comqwerere");
-            driver.findElement(By.id("passwd")).click();
-            driver.findElement(By.id("passwd")).clear();
-            driver.findElement(By.id("passwd")).sendKeys(passwords[i]);
-            driver.findElement(By.id("SubmitLogin")).click();
-
-            WebElement webElementWithErrorMessage = driver.findElement(By.cssSelector(errorMessageCssLocator));
-            String actualErrorMessage = webElementWithErrorMessage.getText();
-            try {
-                assertEquals(actualErrorMessage, expectedMessages[i]);
-            } catch (Error e) {
-                verificationErrors.append(e.toString());
-            }
+        WebElement webElementWithErrorMessage = driver.findElement(By.cssSelector(errorMessageCssLocator));
+        String actualErrorMessage = webElementWithErrorMessage.getText();
+        try {
+            assertEquals(actualErrorMessage, expectedMessage);
+        } catch (Error e) {
+            verificationErrors.append(e.toString());
         }
     }
 
@@ -110,5 +98,14 @@ public class AuthTests {
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
+    }
+
+    // TODO FROM EXCEL
+    @DataProvider(name="authDataProvider")
+    public Object[][] authDataProvider() {
+        return new Object[][] {
+                {"", "123", "An email address required."},
+                {"qwertyLogin", "qwertyPassword", "Invalid email address."}
+        };
     }
 }
