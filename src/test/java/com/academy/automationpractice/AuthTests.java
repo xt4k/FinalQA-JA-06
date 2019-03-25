@@ -19,7 +19,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 public class AuthTests {
-    private String commonProperties = "D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties";
+    private String commonProperties = "D:/programming/teaching/qa-ja-06/QA-JA-06/src/main/resources/common.properties";
     private WebDriver driver;
     private String baseUrl;
 
@@ -72,13 +72,13 @@ public class AuthTests {
             //driver.findElement(By.id("email")).sendKeys("oleg.kh81@gmail.comqwerere");
             driver.findElement(By.id("passwd")).click();
             driver.findElement(By.id("passwd")).clear();
-            driver.findElement(By.id("passwd")).sendKeys("123qwertyasdd");
-            driver.findElement(By.id("SubmitLogin")).submit();
+            driver.findElement(By.id("passwd")).sendKeys(passwords[i]);
+            driver.findElement(By.id("SubmitLogin")).click();
 
             WebElement webElementWithErrorMessage = driver.findElement(By.cssSelector(errorMessageCssLocator));
             String actualErrorMessage = webElementWithErrorMessage.getText();
             try {
-                assertEquals(actualErrorMessage, "Authentication failed.");
+                assertEquals(actualErrorMessage, expectedMessages[i]);
             } catch (Error e) {
                 verificationErrors.append(e.toString());
             }
