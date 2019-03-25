@@ -19,7 +19,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 public class AuthTests {
-    private String commonProperties = "D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties";
+    private String commonProperties = "D:/programming/teaching/qa-ja-06/QA-JA-06/src/main/resources/common.properties";
     private WebDriver driver;
     private String baseUrl;
 
