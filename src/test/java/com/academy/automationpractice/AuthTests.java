@@ -1,68 +1,25 @@
 package com.academy.automationpractice;
 
 import com.academy.automationpractice.model.AuthData;
+import com.academy.framework.BaseTest;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
-public class AuthTests {
-    private WebDriver driver;
-    private String baseUrl;
+public class AuthTests extends BaseTest {
 
-    private String errorMessageCssLocator = "#center_column > div.alert.alert-danger > ol > li";
-
-    private StringBuffer verificationErrors = new StringBuffer();
-
-    @Parameters("browser")
-    @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("firefox") String browser) throws Exception {
-        initDrivers(browser);
-
-        baseUrl = "http://automationpractice.com/index.php";
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    private void initDrivers(String browser) {
-        // Здесь читаю пусть к файлу конфигурации
-        String commonProperties = System.getProperty("common.cfg");
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileReader(commonProperties));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        switch (browser) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
-                driver = new ChromeDriver();
-                break;
-
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", properties.getProperty("gecko.driver"));
-                driver = new FirefoxDriver();
-                break;
-
-            default:
-                throw new IllegalArgumentException("Unknown browser " + browser);
-        }
-    }
+    protected String errorMessageCssLocator = "#center_column > div.alert.alert-danger > ol > li";
+    protected String baseUrl = "http://automationpractice.com/index.php";
 
     @Test(dataProvider = "authDataProvider")
     public void testUntitledTestCase(String login, String password, String expectedMessage) throws Exception {
@@ -94,15 +51,6 @@ public class AuthTests {
 
         // Прочитать из excel файла
         return testDataList;
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 
     // TODO move path to property
