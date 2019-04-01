@@ -24,6 +24,7 @@ public class BaseTest {
     public void setUp(@Optional("firefox") String browser) throws Exception {
         initDrivers(browser);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
     private void initDrivers(String browser) {
