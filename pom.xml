@@ -17,7 +17,7 @@
         <common.config>${basedir}/src/main/resources/common.properties</common.config>
 
         <poi.ooxml.version>4.0.1</poi.ooxml.version>
-        <selenium.version>3.12.0</selenium.version>
+        <selenium.version>3.14.0</selenium.version>
         <testng.version>7.0.0-beta3</testng.version>
     </properties>
 
