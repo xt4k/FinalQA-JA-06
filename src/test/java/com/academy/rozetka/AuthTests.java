@@ -1,12 +1,8 @@
 package com.academy.rozetka;
 
-import com.academy.framework.test.BaseTest;
+import com.academy.framework.BaseTest;
 import com.academy.rozetka.page.AuthFormPage;
 import com.academy.rozetka.page.MainPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

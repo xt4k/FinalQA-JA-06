@@ -1,12 +1,14 @@
 package com.academy.automationpractice;
 
 import com.academy.automationpractice.model.AuthData;
-import com.academy.framework.test.BaseTest;
+import com.academy.framework.BaseTest;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.*;
-import org.testng.annotations.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
 public class AuthTests extends BaseTest {
 
