@@ -1,6 +1,6 @@
 package com.academy.rozetka;
 
-import com.academy.framework.BaseTest;
+import com.academy.framework.test.BaseTest;
 import com.academy.rozetka.page.AuthFormPage;
 import com.academy.rozetka.page.MainPage;
 import org.openqa.selenium.By;

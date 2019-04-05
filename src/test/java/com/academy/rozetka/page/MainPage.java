@@ -1,6 +1,6 @@
 package com.academy.rozetka.page;
 
-import com.academy.framework.BasePage;
+import com.academy.framework.page.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

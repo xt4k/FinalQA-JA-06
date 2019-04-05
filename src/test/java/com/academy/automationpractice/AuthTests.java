@@ -1,7 +1,7 @@
 package com.academy.automationpractice;
 
 import com.academy.automationpractice.model.AuthData;
-import com.academy.framework.BaseTest;
+import com.academy.framework.test.BaseTest;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

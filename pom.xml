@@ -17,9 +17,17 @@
         <common.config>${basedir}/src/main/resources/common.properties</common.config>
 
         <poi.ooxml.version>4.0.1</poi.ooxml.version>
+        <selenium.version>3.12.0</selenium.version>
+        <testng.version>7.0.0-beta3</testng.version>
     </properties>
 
     <dependencies>
+        <!-- Framework -->
+        <dependency>
+            <groupId>com.academy</groupId>
+            <artifactId>taf</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--Excel-->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -38,14 +46,14 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.12.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!--TestNG-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.0.0-beta3</version>
+            <version>${testng.version}</version>
         </dependency>
     </dependencies>
 
