@@ -39,14 +39,15 @@ public class FilterTests extends BaseTest {
         driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div:nth-child(1) > div > div.catalog-settings__sorting.js-app-sort > button")).click();
         driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div:nth-child(1) > div > div.catalog-settings__sorting.js-app-sort > ul > li:nth-child(1) > a")).click();
 
-        waitForJSandJQueryToLoad();
-        List<WebElement> prices = driver.findElements(By.cssSelector(pricesCssLocator));
-        prices.stream().map(WebElement::getText).forEach(System.out::println);
+//        waitForJSandJQueryToLoad();
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        List<WebElement> prices = driver.findElements(By.cssSelector(pricesCssLocator));
+        prices.stream().map(WebElement::getText).forEach(System.out::println);
     }
 
     protected boolean waitForJSandJQueryToLoad() {
