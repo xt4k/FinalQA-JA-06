@@ -27,7 +27,7 @@ public class AuthTests extends BaseTest {
     protected String baseUrl = "http://automationpractice.com/index.php";
 
     @Test(dataProvider = "authDataProvider")
-    public void testUntitledTestCase(String login, String password, String expectedMessage) throws Exception {
+    public void testAuthFail(String login, String password, String expectedMessage) throws Exception {
         driver.get(baseUrl);
         driver.findElement(By.linkText("Sign in")).click();
 

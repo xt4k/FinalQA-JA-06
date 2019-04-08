@@ -15,6 +15,7 @@
         <!--Кодировка-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <common.config>${basedir}/src/main/resources/common.properties</common.config>
+        <rozetka.config>${basedir}/src/main/resources/rozetka.properties</rozetka.config>
 
         <poi.ooxml.version>4.0.1</poi.ooxml.version>
         <selenium.version>3.14.0</selenium.version>
@@ -81,6 +82,12 @@
                         <property>
                             <name>common.cfg</name>
                             <value>${common.config}</value>
+                            <!--<value>D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties</value>-->
+                            <!--<value>${basedir}/src/main/resources/common.properties</value>-->
+                        </property>
+                        <property>
+                            <name>rozetka.cfg</name>
+                            <value>${rozetka.config}</value>
                             <!--<value>D:/programming/java/QA-JA-06/maven/src/main/resources/common.properties</value>-->
                             <!--<value>${basedir}/src/main/resources/common.properties</value>-->
                         </property>

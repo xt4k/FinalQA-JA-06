@@ -21,9 +21,8 @@ public class FilterTests extends BaseTest {
         driver.get(baseUrl);
 
         String locatorMainLink = "body > app-root > div > div:nth-child(2) > div.app-rz-main-page > div > aside > main-page-sidebar > sidebar-fat-menu > div > ul > li:nth-child(9) > a";
+//        waitForJSandJQueryToLoad();
         WebElement mainLink = driver.findElement(By.cssSelector(locatorMainLink));
-        waitForJSandJQueryToLoad();
-
         Actions action = new Actions(driver);
         action.moveToElement(mainLink)
                 .build()
