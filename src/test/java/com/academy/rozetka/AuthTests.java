@@ -1,7 +1,7 @@
 package com.academy.rozetka;
 
 import com.academy.framework.BaseTest;
-import com.academy.framework.util.PropertyManager;
+import com.academy.framework.util.PropertyReader;
 import com.academy.rozetka.page.AuthFormPage;
 import com.academy.rozetka.page.MainPage;
 import org.apache.logging.log4j.LogManager;
@@ -35,10 +35,10 @@ public class AuthTests extends BaseTest {
     @DataProvider(name="testSuccessAuthDataProvider")
     private Object[][] testSuccessAuthDataProvider() {
 //        String login = "oleg.kh81@gmail.com";
-        String login = PropertyManager.from("rozetka").getProperty("login");
-        String password = PropertyManager.from("rozetka").getProperty("password");
+        String login = PropertyReader.from("rozetka").getProperty("login");
+        String password = PropertyReader.from("rozetka").getProperty("password");
 //        String userNameExpected = "Oleg";
-        String userNameExpected = PropertyManager.from("rozetka").getProperty("username");
+        String userNameExpected = PropertyReader.from("rozetka").getProperty("username");
 
         return new Object[][] {
                 {login, password, userNameExpected}
