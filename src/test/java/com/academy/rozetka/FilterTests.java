@@ -10,39 +10,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
+import java.util.List;
 
 public class FilterTests extends BaseTest {
     private String baseUrl = "https://rozetka.com.ua/ua/";
 
     @Test
     public void testFilterByPrice() {
+        System.out.println("Start filter test");
         driver.get(baseUrl);
 
         String locatorMainLink = "body > app-root > div > div:nth-child(2) > div.app-rz-main-page > div > aside > main-page-sidebar > sidebar-fat-menu > div > ul > li:nth-child(9) > a";
         WebElement mainLink = driver.findElement(By.cssSelector(locatorMainLink));
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForJSandJQueryToLoad();
+
         Actions action = new Actions(driver);
         action.moveToElement(mainLink)
                 .build()
                 .perform();
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        waitForJSandJQueryToLoad();
-//        new WebDriverWait(driver, 5)
-//                .until(ExpectedConditions.attributeContains(
-//                        By.cssSelector(locatorMainLink), "class",
-//                        "menu-categories__item_state_hovered"
-//                ));
-        driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-header > header > div > div.header-bottomline > div.menu-outer.js-rz-fat-menu > fat-menu > div > ul > li.menu-categories__item.menu-categories__item_state_hovered > div > div.menu__main-cats > div.menu__main-cats-inner > div:nth-child(1) > ul:nth-child(1) > li > ul > li:nth-child(4) > a")).click();
+        String menuItemXPathLocator = "/html/body/app-root/div/div[1]/div[1]/header/div/div[2]/div[1]/fat-menu/div/ul/li//a[contains(@class, 'menu__link') and contains(normalize-space(text()), 'Блузки и рубашки')]";
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.elementToBeClickable(By.xpath(menuItemXPathLocator)));
+        driver.findElement(By.xpath(menuItemXPathLocator)).click();
+
+        String pricesCssLocator = "body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div.layout.layout_with_sidebar > section > app-goods > ul > li > app-goods-tile > app-goods-tile-default > div > div.goods-tile__inner > div.goods-tile__prices > div:nth-child(2) > p > span.goods-tile__price-value";
+
+        driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div:nth-child(1) > div > div.catalog-settings__sorting.js-app-sort > button")).click();
+        driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div:nth-child(1) > div > div.catalog-settings__sorting.js-app-sort > ul > li:nth-child(1) > a")).click();
+
+        waitForJSandJQueryToLoad();
+        List<WebElement> prices = driver.findElements(By.cssSelector(pricesCssLocator));
+        prices.stream().map(WebElement::getText).forEach(System.out::println);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

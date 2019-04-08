@@ -4,7 +4,6 @@ import com.academy.lesson11.Gender;
 import com.academy.lesson11.Subscriber;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
