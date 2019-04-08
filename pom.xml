@@ -20,6 +20,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.academy</groupId>
+            <artifactId>taf</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--Excel-->
         <dependency>
             <groupId>org.apache.poi</groupId>
