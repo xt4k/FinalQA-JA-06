@@ -17,9 +17,13 @@
         <common.config>${basedir}/src/main/resources/common.properties</common.config>
 
         <poi.ooxml.version>4.0.1</poi.ooxml.version>
+        <selenium.version>3.14.0</selenium.version>
+        <testng.version>7.0.0-beta3</testng.version>
+        <log4j.version>2.11.1</log4j.version>
     </properties>
 
     <dependencies>
+        <!-- Framework -->
         <dependency>
             <groupId>com.academy</groupId>
             <artifactId>taf</artifactId>
@@ -43,14 +47,26 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.12.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!--TestNG-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.0.0-beta3</version>
+            <version>${testng.version}</version>
+        </dependency>
+
+        <!--Logger -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 

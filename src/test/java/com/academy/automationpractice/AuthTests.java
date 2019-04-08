@@ -1,7 +1,9 @@
 package com.academy.automationpractice;
 
-import com.academy.automation.framework.test.BaseTest;
 import com.academy.automationpractice.model.AuthData;
+import com.academy.framework.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,6 +20,8 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 public class AuthTests extends BaseTest {
+
+    private final static Logger LOG = LogManager.getLogger(AuthTests.class);
 
     protected String errorMessageCssLocator = "#center_column > div.alert.alert-danger > ol > li";
     protected String baseUrl = "http://automationpractice.com/index.php";

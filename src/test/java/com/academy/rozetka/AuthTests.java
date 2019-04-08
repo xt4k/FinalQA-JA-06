@@ -1,18 +1,22 @@
 package com.academy.rozetka;
 
-import com.academy.automation.framework.test.BaseTest;
+import com.academy.framework.BaseTest;
 import com.academy.rozetka.page.AuthFormPage;
 import com.academy.rozetka.page.MainPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AuthTests extends BaseTest {
+    private final static Logger LOG = LogManager.getLogger(com.academy.automationpractice.AuthTests.class);
 
     protected String baseUrl = "https://rozetka.com.ua/ua/";
 
     @Test
     public void testSuccessAuth() {
         System.out.println("***Rozetka test Auth start***");
+        LOG.info("***Rozetka test Auth start***");
         driver.get(baseUrl);
 
 //        WebElement enterLink = driver.findElement(By.cssSelector(linkEnterLocator));
