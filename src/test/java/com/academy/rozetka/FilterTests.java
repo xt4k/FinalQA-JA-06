@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class FilterTests extends BaseTest {
-    private String baseUrl = "https://rozetka.com.ua/ua/";
+    private String baseUrl = "https://rozetka.com.ua";
 
     @Test
     public void testFilterByPrice() {

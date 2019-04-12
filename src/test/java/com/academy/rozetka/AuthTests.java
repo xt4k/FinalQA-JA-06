@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class AuthTests extends BaseTest {
     private final static Logger LOG = LogManager.getLogger(com.academy.automationpractice.AuthTests.class);
 
-    protected String baseUrl = "https://rozetka.com.ua/ua/";
+    protected String baseUrl = "https://rozetka.com.ua";
 
     @Test(dataProvider = "testSuccessAuthDataProvider")
     public void testSuccessAuth(String login, String password, String userNameExpected) {
