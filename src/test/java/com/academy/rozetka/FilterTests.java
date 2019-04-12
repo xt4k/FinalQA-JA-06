@@ -49,7 +49,7 @@ public class FilterTests extends BaseTest {
         driver.findElement(By.cssSelector("body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div:nth-child(1) > div > div.catalog-settings__sorting.js-app-sort > ul > li:nth-child(1) > a")).click();
 
 //        waitForJSandJQueryToLoad();
-
+//      Комментарий
         String goodCssLocator = "body > app-root > div > div:nth-child(2) > div.app-rz-catalog > div.central-wrapper > main > div.layout.layout_with_sidebar > section > app-goods > ul > li:nth-child(1) > app-goods-tile > app-goods-tile-default > div > div.goods-tile__inner > a.goods-tile__picture";
         waitForJSandJQueryToLoad();
         new WebDriverWait(driver, 10)
