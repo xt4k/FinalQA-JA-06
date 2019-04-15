@@ -5,8 +5,19 @@
 <suite name="Cross Browser  Suite">
     <test name="Login Tests Chrome">
         <parameter name="browser" value="chrome" />
+        <parameter name="mainMenu" value="Одежда, обувь и украшения" />
+        <parameter name="subMenu" value="Блузки и рубашки" />
         <classes>
-            <class name="com.academy.rozetka.FilterTests" />
+            <class name="com.academy.rozetka.SortTests" />
+        </classes>
+    </test>
+
+    <test name="Login Tests Chrome 2">
+        <parameter name="browser" value="chrome" />
+        <parameter name="mainMenu" value="Одежда, обувь и украшения" />
+        <parameter name="subMenu" value="Джемперы" />
+        <classes>
+            <class name="com.academy.rozetka.SortTests" />
         </classes>
     </test>
 </suite>
